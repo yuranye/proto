@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package showcase.orders;
+
+option csharp_namespace = "Showcase.Orders";
+
+message Order {
+  string product_uuid = 1;
+  uint32 count = 2;
+  string delivery_uuid = 3;
+}
+

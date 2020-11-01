@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package showcase.orders;
+
+option csharp_namespace = "Showcase.Orders";
+
+import "orders/models.proto";
+
+
+// The orders service definition.
+service OrdersService {
+  // places an order
+  rpc PlaceOrder (PlaceOrderRequest) returns (PlaceOrderResponse);
+}
+
+message PlaceOrderRequest {
+  Order order = 1;
+}
+
+message PlaceOrderResponse {
+  Order order = 1;
+}
