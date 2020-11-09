@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package showcase.clients;
+
+option csharp_namespace = "Showcase.Clients";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+import "clients/models.proto";
+
+
+// The Clients service definition. Simple crud service
+service ClientService {
+  // creates a Client
+  rpc CreateClient (CreateClientRequest) returns (CreateClientResponse)
+  {
+    option (google.api.http) = {
+      put: "/v1/Clients"
+      body: "*"
+    };
+  };
+  // updates a Client
+  rpc UpdateClient (UpdateClientRequest) returns (UpdateClientResponse)
+  {
+    option (google.api.http) = {
+      patch: "/v1/Clients"
+      body: "*"
+    };
+  };
+  //gets a Client
+  rpc GetClient (GetClientRequest) returns (GetClientResponse)
+  {
+    option (google.api.http) = {
+      get: "/v1/Clients/{Client_uuid}"
+    };
+  };
+  //gets many Clients
+  rpc ListClients (ListClientsRequest) returns (ListClientsResponse)
+  {
+    option (google.api.http) = {
+      get: "/v1/Clients"
+    };
+  };
+  //deletes a Client
+  rpc DeleteClient (DeleteClientRequest) returns (google.protobuf.Empty)
+  {
+    option (google.api.http) = {
+      delete: "/v1/Clients/{Client_uuid}"
+    };
+  };
+}
+
+message DeleteClientRequest {
+  string Client_uuid = 1;
+}
+
+message ListClientsRequest {
+  repeated string Client_uuids = 1;
+}
+
+message ListClientsResponse {
+  repeated Client Clients = 1;
+}
+
+message GetClientRequest {
+  string Client_uuid = 1;
+}
+
+message GetClientResponse {
+  Client Client = 1;
+}
+
+message CreateClientRequest {
+  Client Client = 1;
+}
+
+message CreateClientResponse {
+  Client Client = 1;
+}
+
+message UpdateClientRequest {
+  Client Client = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+
+message UpdateClientResponse {
+  Client Client = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package showcase.clients;
+
+option csharp_namespace = "Showcase.Clients";
+
+message Client {
+  string client_uuid = 1;
+  string first_name = 2;
+  string second_name = 3;
+  float balance = 4;
+}

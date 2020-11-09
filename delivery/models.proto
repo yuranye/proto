@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package showcase.delivery;
+
+option csharp_namespace = "Showcase.Delivery";
+
+message Delivery {
+  string delivery_uuid = 1;
+  Location start_location = 2;
+  Location end_location = 3;
+  float price_rate = 4;
+}
+
+message Location {
+  float latitude = 1;
+  float longitude = 2;
+}

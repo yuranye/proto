@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package showcase.clients;
+
+option csharp_namespace = "Showcase.Clients";
+
+import "google/protobuf/field_mask.proto";
+import "clients/models.proto";
+
+message ClientCreated {
+    Client client = 1;
+}
+
+message OrderUpdated {
+    Client client = 1;
+    google.protobuf.FieldMask field_mask = 2;
+}

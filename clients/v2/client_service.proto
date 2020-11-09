@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package showcase.clients.v2;
+
+option csharp_namespace = "Showcase.Clients.V2";
+
+import "google/api/annotations.proto";
+import "clients/v2/models.proto";
+
+
+// V2 definition for clients service. V1 still can be used until deprecated. Uses v2 client model
+service ClientService {
+  // creates v2 clients
+  rpc CreateManyClients (CreateBatchClientsRequest) returns (CreateBatchClientsResponse)
+  {
+    option (google.api.http) = {
+      post: "/v2/clients"
+      body: "*"
+    };
+  };
+}
+
+message CreateBatchClientsRequest {
+  Client Client = 1;
+}
+
+message CreateBatchClientsResponse {
+  Client Client = 1;
+}

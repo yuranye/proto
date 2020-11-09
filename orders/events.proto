@@ -8,11 +8,13 @@ import "google/protobuf/field_mask.proto";
 import "orders/models.proto";
 
 message OrderCreated {
+    //just for showcase
     uint32 order_id = 1 [deprecated = true];
     Order order = 2;
 }
 
 message OrderUpdated {
+    //just for showcase
     uint32 order_id = 1 [deprecated = true];
     Order order = 2;
     google.protobuf.FieldMask field_mask = 3;

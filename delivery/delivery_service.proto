@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package showcase.delivery;
+
+option csharp_namespace = "Showcase.Delivery";
+
+import "google/api/annotations.proto";
+import "delivery/models.proto";
+
+
+// The delivery service definition.
+service DeliveryService {
+  // creates an delivery
+  rpc CreateDelivery (CreateDeliveryRequest) returns (CreateDeliveryResponse)
+  {
+    option (google.api.http) = {
+      put: "/v1/delivery"
+      body: "*"
+    };
+  };
+  //gets a delivery
+  rpc GetDelivery (GetDeliveryRequest) returns (GetDeliveryResponse)
+  {
+    option (google.api.http) = {
+      get: "/v1/delivery/{delivery_uuid}"
+    };
+  };
+  //gets many deliveries
+  rpc ListDeliveries (ListDeliveriesRequest) returns (ListDeliveriesResponse)
+  {
+    option (google.api.http) = {
+      get: "/v1/delivery"
+    };
+  };
+}
+
+message ListDeliveriesRequest {
+  repeated string delivery_uuids = 1;
+}
+
+message ListDeliveriesResponse {
+  repeated Delivery deliveries = 1;
+}
+
+message GetDeliveryRequest {
+  string delivery_uuid = 1;
+}
+
+message GetDeliveryResponse {
+  Delivery delivery = 1;
+}
+
+message CreateDeliveryRequest {
+  Delivery delivery = 1;
+}
+
+message CreateDeliveryResponse {
+  Delivery delivery = 1;
+}

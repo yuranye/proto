@@ -5,6 +5,7 @@ package showcase.orders;
 option csharp_namespace = "Showcase.Orders";
 
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 import "orders/models.proto";
 
@@ -15,7 +16,7 @@ service OrdersService {
   rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse)
   {
     option (google.api.http) = {
-      post: "/v1/orders"
+      put: "/v1/orders"
       body: "*"
     };
   };
@@ -23,10 +24,51 @@ service OrdersService {
   rpc UpdateOrder (UpdateOrderRequest) returns (UpdateOrderResponse)
   {
     option (google.api.http) = {
-      post: "/v1/orders"
+      patch: "/v1/orders"
       body: "*"
     };
   };
+  //gets an order
+  rpc GetOrder (GetOrderRequest) returns (GetOrderResponse)
+  {
+    option (google.api.http) = {
+      get: "/v1/orders/{order_uuid}"
+    };
+  };
+  //gets many orders
+  rpc ListOrders (ListOrdersRequest) returns (ListOrdersResponse)
+  {
+    option (google.api.http) = {
+      get: "/v1/orders"
+    };
+  };
+  //deletes an order
+  rpc DeleteOrder (DeleteOrderRequest) returns (google.protobuf.Empty)
+  {
+    option (google.api.http) = {
+      delete: "/v1/orders/{order_uuid}"
+    };
+  };
+}
+
+message DeleteOrderRequest {
+  string order_uuid = 1;
+}
+
+message ListOrdersRequest {
+  repeated string order_uuids = 1;
+}
+
+message ListOrdersResponse {
+  repeated Order orders = 1;
+}
+
+message GetOrderRequest {
+  string order_uuid = 1;
+}
+
+message GetOrderResponse {
+  Order order = 1;
 }
 
 message CreateOrderRequest {
