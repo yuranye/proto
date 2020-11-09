@@ -25,4 +25,4 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Build protos
-      run: ls
+      run: sh ./build_all.sh
