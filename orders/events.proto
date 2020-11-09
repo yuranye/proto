@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package showcase.orders;
+
+option csharp_namespace = "Showcase.Orders";
+
+import "google/protobuf/field_mask.proto";
+import "orders/models.proto";
+
+message OrderCreated {
+    uint32 order_id = 1 [deprecated = true];
+    Order order = 2;
+}
+
+message OrderUpdated {
+    uint32 order_id = 1 [deprecated = true];
+    Order order = 2;
+    google.protobuf.FieldMask field_mask = 3;
+}

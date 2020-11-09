@@ -9,4 +9,3 @@ message Order {
   uint32 count = 2;
   string delivery_uuid = 3;
 }
-

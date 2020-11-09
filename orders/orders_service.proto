@@ -4,19 +4,44 @@ package showcase.orders;
 
 option csharp_namespace = "Showcase.Orders";
 
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
 import "orders/models.proto";
 
 
 // The orders service definition.
 service OrdersService {
-  // places an order
-  rpc PlaceOrder (PlaceOrderRequest) returns (PlaceOrderResponse);
+  // creates an order
+  rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse)
+  {
+    option (google.api.http) = {
+      post: "/v1/orders"
+      body: "*"
+    };
+  };
+  // updates an order
+  rpc UpdateOrder (UpdateOrderRequest) returns (UpdateOrderResponse)
+  {
+    option (google.api.http) = {
+      post: "/v1/orders"
+      body: "*"
+    };
+  };
 }
 
-message PlaceOrderRequest {
+message CreateOrderRequest {
   Order order = 1;
 }
 
-message PlaceOrderResponse {
+message CreateOrderResponse {
+  Order order = 1;
+}
+
+message UpdateOrderRequest {
+  Order order = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+
+message UpdateOrderResponse {
   Order order = 1;
 }

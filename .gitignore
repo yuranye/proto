@@ -1,1 +1,6 @@
+#ignore idea specific files
 .idea
+
+#ignore generated files
+gen/csharp/**/*.cs
+gen/go/**/*.go

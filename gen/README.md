@@ -1,0 +1,1 @@
+Folder which contain generated protobuf files

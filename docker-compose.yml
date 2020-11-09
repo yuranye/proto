@@ -1,0 +1,9 @@
+version: '3.8'
+#${find . -type f -name "*.proto"}
+services:
+  protoc:
+    image: jaegertracing/protobuf:latest
+    #command: --proto_path=${PWD} --csharp_out=${PWD}/gen $(find [folder_name] -type f -name "[file_name].proto")
+    volumes:
+      - ${PWD}:${PWD}
+    working_dir: ${PWD}
