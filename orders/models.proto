@@ -5,7 +5,8 @@ package showcase.orders;
 option csharp_namespace = "Showcase.Orders";
 
 message Order {
-  string product_uuid = 1;
-  uint32 count = 2;
-  string delivery_uuid = 3;
+  string order_uuid = 1;
+  string product_uuid = 2;
+  uint32 count = 3;
+  string delivery_uuid = 4;
 }
